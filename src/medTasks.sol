@@ -3,7 +3,11 @@ pragma solidity ^0.8.26;
 
 // MedTasks - A decentralized health task manager for patient follow-ups
 contract MedTasks {
-    enum Status { Pending, Ongoing, Completed }
+    enum Status {
+        Pending,
+        Ongoing,
+        Completed
+    }
 
     struct Task {
         string patientId;
@@ -20,12 +24,9 @@ contract MedTasks {
 
     /// medical follow-up task _patientId The patient’s unique ID  _description The task details
     function createTask(string memory _patientId, string memory _description) external {
-        tasks[msg.sender].push(Task({
-            patientId: _patientId,
-            description: _description,
-            status: Status.Pending,
-            createdAt: block.timestamp
-        }));
+        tasks[msg.sender].push(
+            Task({patientId: _patientId, description: _description, status: Status.Pending, createdAt: block.timestamp})
+        );
 
         emit TaskCreated(msg.sender, tasks[msg.sender].length - 1, _patientId);
     }
@@ -46,7 +47,7 @@ contract MedTasks {
 
         emit TaskUpdated(msg.sender, _index, _status);
     }
-    
+
     function deleteTask(uint256 _index) external {
         uint256 length = tasks[msg.sender].length;
         require(_index < length, "Invalid task index");

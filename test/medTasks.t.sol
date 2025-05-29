@@ -21,7 +21,7 @@ contract MedTasksTest is Test {
         assertEq(tasks.length, 1);
         assertEq(tasks[0].patientId, "PAT123");
         assertEq(tasks[0].description, "Follow-up for blood test");
-        assertEq(uint(tasks[0].status), uint(MedTasks.Status.Pending));
+        assertEq(uint256(tasks[0].status), uint256(MedTasks.Status.Pending));
         assertGt(tasks[0].createdAt, 0);
     }
 
@@ -34,7 +34,7 @@ contract MedTasksTest is Test {
 
         MedTasks.Task[] memory tasks = medTasks.getTasksByWorker(worker1);
         assertEq(tasks[0].description, "Updated checkup");
-        assertEq(uint(tasks[0].status), uint(MedTasks.Status.Ongoing));
+        assertEq(uint256(tasks[0].status), uint256(MedTasks.Status.Ongoing));
     }
 
     function testDeleteTask() public {
