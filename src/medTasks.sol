@@ -22,7 +22,7 @@ contract MedTasks {
     event TaskUpdated(address indexed worker, uint256 taskIndex, Status newStatus);
     event TaskDeleted(address indexed worker, uint256 taskIndex);
 
-    /// medical follow-up task _patientId The patient’s unique ID  _description The task details
+    // medical follow-up task _patientId The patient’s unique ID  _description The task details
     function createTask(string memory _patientId, string memory _description) external {
         tasks[msg.sender].push(
             Task({patientId: _patientId, description: _description, status: Status.Pending, createdAt: block.timestamp})

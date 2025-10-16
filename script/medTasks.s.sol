@@ -7,7 +7,7 @@ import "../src/medTasks.sol";
 contract MedTasksScript is Script {
     function run() external {
         vm.startBroadcast();
-
+        
         vm.stopBroadcast();
     }
 }
